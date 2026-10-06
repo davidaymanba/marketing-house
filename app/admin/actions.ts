@@ -1,9 +1,11 @@
 "use server";
 
 import { revalidatePath, revalidateTag } from "next/cache";
+import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { z } from "zod";
 import { assertAdmin } from "@/lib/admin/auth";
+import { ADMIN_LOCALE_COOKIE } from "@/lib/admin/locale";
 import { isResourceKey, resources } from "@/lib/admin/resources";
 import { buildSchema, toRow } from "@/lib/admin/validate";
 import { CONTENT_TAG } from "@/lib/data";
@@ -214,6 +216,17 @@ export async function saveSettings(values: unknown): Promise<ActionResult> {
   } catch (e) {
     return fail(e);
   }
+}
+
+/* ------------------------------- language ------------------------------- */
+
+/** Dashboard language preference — available on the login page too (no auth needed). */
+export async function setAdminLocale(locale: string) {
+  (await cookies()).set(ADMIN_LOCALE_COOKIE, locale === "ar" ? "ar" : "en", {
+    path: "/admin",
+    maxAge: 60 * 60 * 24 * 365,
+    sameSite: "lax",
+  });
 }
 
 /* --------------------------------- auth --------------------------------- */

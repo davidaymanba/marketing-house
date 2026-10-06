@@ -1,5 +1,6 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { assertAdmin } from "@/lib/admin/auth";
+import { adminPick, getAdminLocale } from "@/lib/admin/locale";
 
 const STATUSES = ["new", "contacted", "qualified", "won", "lost"];
 
@@ -11,12 +12,13 @@ export async function GET(request: NextRequest) {
   } catch {
     return new NextResponse("Unauthorized", { status: 401 });
   }
+  const locale = await getAdminLocale();
   const status = request.nextUrl.searchParams.get("status") ?? "";
   const q = (request.nextUrl.searchParams.get("q") ?? "").trim().toLowerCase();
 
   let query = supabase
     .from("leads")
-    .select("created_at, name, phone, email, status, budget, message, source_page, services(title_ar), branches(name_ar)")
+    .select("created_at, name, phone, email, status, budget, message, source_page, services(title_ar, title_en), branches(name_ar, name_en)")
     .order("created_at", { ascending: false })
     .limit(10000);
   if (STATUSES.includes(status)) query = query.eq("status", status);
@@ -40,8 +42,8 @@ export async function GET(request: NextRequest) {
       r.phone,
       r.email,
       r.status,
-      (r.services as { title_ar?: string } | null)?.title_ar,
-      (r.branches as { name_ar?: string } | null)?.name_ar,
+      r.services ? adminPick(locale, (r.services as Record<string, string>).title_ar, (r.services as Record<string, string>).title_en) : "",
+      r.branches ? adminPick(locale, (r.branches as Record<string, string>).name_ar, (r.branches as Record<string, string>).name_en) : "",
       r.budget,
       r.message,
       r.source_page,

@@ -1,7 +1,7 @@
 "use client";
 
 import { Download, Mail, MessageCircle, Phone, Search, Trash2 } from "lucide-react";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useOptimistic, useState, useTransition } from "react";
 import { toast } from "sonner";
@@ -27,14 +27,22 @@ export type LeadRow = {
 const STATUSES = ["new", "contacted", "qualified", "won", "lost"] as const;
 type Note = { id: string; body: string; created_at: string };
 
-const fmtDate = (d: string) =>
-  new Date(d).toLocaleString("ar-EG-u-nu-latn", { day: "numeric", month: "short", year: "numeric", hour: "2-digit", minute: "2-digit" });
+const fmtDate = (d: string, locale: string) =>
+  new Date(d).toLocaleString(locale === "ar" ? "ar-EG-u-nu-latn" : "en-GB", {
+    day: "numeric",
+    month: "short",
+    year: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+    timeZone: "Africa/Cairo",
+  });
 const intlPhone = (p: string) => p.replace(/^0/, "20");
 
 export function LeadsInbox({ rows, initialId }: { rows: LeadRow[]; initialId: string | null }) {
   const t = useTranslations("admin.leads");
   const tc = useTranslations("admin.crud");
   const router = useRouter();
+  const locale = useLocale();
   const [q, setQ] = useState("");
   const [status, setStatus] = useState<string>("all");
   const [openId, setOpenId] = useState<string | null>(initialId);
@@ -142,15 +150,15 @@ export function LeadsInbox({ rows, initialId }: { rows: LeadRow[]; initialId: st
                       {r.name}
                     </button>
                   </td>
-                  <td className="p-4" dir="ltr">
-                    <span className="block text-end">{r.phone}</span>
+                  <td className="p-4">
+                    <span dir="ltr">{r.phone}</span>
                   </td>
                   <td className="p-4 text-muted">{r.service || "—"}</td>
                   <td className="p-4 text-muted">{r.branch || "—"}</td>
                   <td className="p-4">
                     <StatusBadge status={r.status} label={t(`statuses.${r.status}` as "statuses.new")} />
                   </td>
-                  <td className="whitespace-nowrap p-4 text-muted">{fmtDate(r.createdAt)}</td>
+                  <td className="whitespace-nowrap p-4 text-muted">{fmtDate(r.createdAt, locale)}</td>
                 </tr>
               ))
             )}
@@ -177,6 +185,7 @@ function LeadDrawer({
   const t = useTranslations("admin.leads");
   const tc = useTranslations("admin.crud");
   const tb = useTranslations("contact.form.budgets");
+  const locale = useLocale();
   const [notes, setNotes] = useState<Note[] | null>(null);
   const [note, setNote] = useState("");
   const [saving, setSaving] = useState(false);
@@ -213,7 +222,7 @@ function LeadDrawer({
         { label: t("branch"), value: lead.branch },
         { label: t("budget"), value: lead.budget ? tb(lead.budget as "lt10k") : "" },
         { label: t("source"), value: lead.source, ltr: true },
-        { label: t("date"), value: fmtDate(lead.createdAt) },
+        { label: t("date"), value: fmtDate(lead.createdAt, locale) },
       ]
     : [];
 
@@ -256,9 +265,7 @@ function LeadDrawer({
               {rows.map((r) => (
                 <div key={r.label}>
                   <dt className="text-xs text-muted">{r.label}</dt>
-                  <dd className="mt-1 break-words font-medium" dir={r.ltr ? "ltr" : undefined} style={r.ltr ? { textAlign: "right" } : undefined}>
-                    {r.value || "—"}
-                  </dd>
+                  <dd className="mt-1 break-words font-medium">{r.ltr && r.value ? <span dir="ltr">{r.value}</span> : r.value || "—"}</dd>
                 </div>
               ))}
             </dl>
@@ -282,7 +289,7 @@ function LeadDrawer({
                   {notes.map((n) => (
                     <li key={n.id} className="relative">
                       <span aria-hidden className="absolute -start-[25px] top-1.5 size-2.5 rounded-full bg-primary-light ring-4 ring-bg-elevated" />
-                      <p className="text-xs text-muted">{fmtDate(n.created_at)}</p>
+                      <p className="text-xs text-muted">{fmtDate(n.created_at, locale)}</p>
                       <p className="mt-1 whitespace-pre-wrap">{n.body}</p>
                     </li>
                   ))}

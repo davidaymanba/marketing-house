@@ -4,9 +4,15 @@ import { routing } from "./routing";
 
 export default getRequestConfig(async ({ requestLocale }) => {
   const requested = await requestLocale;
-  const locale = hasLocale(routing.locales, requested)
-    ? requested
-    : routing.defaultLocale;
+  let locale: string = routing.defaultLocale;
+
+  if (hasLocale(routing.locales, requested)) {
+    locale = requested;
+  } else {
+    // Routes outside [locale] (the admin) use the dashboard language cookie.
+    const { getAdminLocale } = await import("@/lib/admin/locale");
+    locale = await getAdminLocale();
+  }
 
   return {
     locale,

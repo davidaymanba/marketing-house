@@ -329,7 +329,8 @@
       "invalid": "الإيميل أو كلمة المرور غلط.",
       "forbidden": "الحساب ده مش مسموح له بالدخول للوحة التحكم.",
       "notConfigured": "Supabase لسه مش متوصل. ضيف متغيرات البيئة (شوف README) عشان تقدر تدخل.",
-      "tagline": "نبني براندات تكبر"
+      "tagline": "نبني براندات تكبر",
+      "pageTitle": "تسجيل الدخول"
     },
     "overview": {
       "title": "نظرة عامة",
@@ -501,6 +502,9 @@
       "team_members": "الفريق",
       "clients": "شعارات العملاء",
       "branches": "الفروع"
-    }
+    },
+    "metaTitle": "لوحة التحكم | ماركتنج هاوس",
+    "switchLanguage": "English",
+    "switchLanguageLabel": "تحويل لوحة التحكم للإنجليزية"
   }
 }

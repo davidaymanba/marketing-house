@@ -99,7 +99,7 @@ Content edited in the admin appears on the public site right away: pages are sta
 ```
 app/[locale]/(site)/…    public pages (ar/en): home, services, portfolio, about, contact, 404
 app/[locale]/opengraph-image.tsx   dynamic branded OG images (Arabic-safe)
-app/admin/…              dashboard (Arabic/RTL only): login, overview, leads, CRUD, settings
+app/admin/…              dashboard (English by default, Arabic via toggle): login, overview, leads, CRUD, settings
 app/actions/lead.ts      contact form Server Action
 app/sitemap.ts, robots.ts
 components/motion        RevealText, RevealImage, Magnetic, Marquee, Parallax, Counter,

@@ -1,5 +1,6 @@
 "use client";
 
+import { useLocale } from "next-intl";
 import { useState } from "react";
 
 type Point = { date: string; count: number };
@@ -10,6 +11,7 @@ type Point = { date: string; count: number };
  * recessive grid, per-bar hover tooltip with a larger hit target, and a table view.
  */
 export function LeadsChart({ data, labels }: { data: Point[]; labels: { table: string; hide: string; date: string; count: number | string } }) {
+  const locale = useLocale();
   const [hover, setHover] = useState<number | null>(null);
   const [showTable, setShowTable] = useState(false);
   const max = Math.max(4, ...data.map((d) => d.count));
@@ -21,7 +23,8 @@ export function LeadsChart({ data, labels }: { data: Point[]; labels: { table: s
   const ih = H - pad.t - pad.b;
   const step = iw / data.length;
   const bw = Math.max(4, step - 2);
-  const fmt = (d: string) => new Date(d).toLocaleDateString("ar-EG-u-nu-latn", { day: "numeric", month: "short" });
+  // d is a YYYY-MM-DD Cairo day; format it at noon UTC so no timezone can shift it.
+  const fmt = (d: string) => new Date(`${d}T12:00:00Z`).toLocaleDateString(locale === "ar" ? "ar-EG-u-nu-latn" : "en-GB", { day: "numeric", month: "short", timeZone: "UTC" });
 
   return (
     <div>
@@ -74,7 +77,7 @@ export function LeadsChart({ data, labels }: { data: Point[]; labels: { table: s
           <div
             className="pointer-events-none absolute top-0 -translate-x-1/2 rounded-lg border border-line bg-bg px-3 py-2 text-xs shadow-lg"
             style={{ left: `${((pad.l + hover * step + step / 2) / W) * 100}%` }}
-            dir="rtl"
+            dir={locale === "ar" ? "rtl" : "ltr"}
           >
             <p className="text-muted">{fmt(data[hover].date)}</p>
             <p className="font-bold text-fg">

@@ -5,14 +5,14 @@ import { MotionConfig } from "motion/react";
 import type { ReactNode } from "react";
 import { Toaster } from "sonner";
 
-export function AdminProviders({ children }: { children: ReactNode }) {
+export function AdminProviders({ children, dir }: { children: ReactNode; dir: "ltr" | "rtl" }) {
   return (
-    <DirectionProvider dir="rtl">
+    <DirectionProvider dir={dir}>
       <MotionConfig reducedMotion="user" transition={{ duration: 0.25 }}>
         {children}
         <Toaster
-          dir="rtl"
-          position="bottom-left"
+          dir={dir}
+          position={dir === "rtl" ? "bottom-left" : "bottom-right"}
           theme="dark"
           richColors
           toastOptions={{ classNames: { toast: "!rounded-2xl !font-sans" } }}

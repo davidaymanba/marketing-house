@@ -1,20 +1,23 @@
 import { Briefcase, Inbox, Sparkles, TrendingUp } from "lucide-react";
-import type { Metadata } from "next";
 import Link from "next/link";
 import { getTranslations } from "next-intl/server";
 import { LeadsChart } from "@/components/admin/LeadsChart";
 import { PageHeader, StatusBadge } from "@/components/admin/ui";
 import { requireAdmin } from "@/lib/admin/auth";
 
-export const metadata: Metadata = { title: "نظرة عامة" };
+export async function generateMetadata() {
+  const t = await getTranslations("admin.overview");
+  return { title: t("title") };
+}
 
 export default async function OverviewPage() {
   const { supabase } = await requireAdmin();
   const t = await getTranslations("admin.overview");
   const tl = await getTranslations("admin.leads");
 
-  const since30 = new Date(Date.now() - 29 * 864e5);
-  since30.setHours(0, 0, 0, 0);
+  // Day buckets in Egypt time (Africa/Cairo), so "today" matches what the admin sees.
+  const cairoDay = (d: Date) => d.toLocaleDateString("en-CA", { timeZone: "Africa/Cairo" });
+  const since30 = new Date(Date.now() - 30 * 864e5);
   const since7 = new Date(Date.now() - 7 * 864e5).toISOString();
 
   const [total, week, won, projects, recent, latest] = await Promise.all([
@@ -29,12 +32,12 @@ export default async function OverviewPage() {
   const totalCount = total.count ?? 0;
   const conversion = totalCount ? Math.round(((won.count ?? 0) / totalCount) * 100) : 0;
 
-  const days = Array.from({ length: 30 }, (_, i) => {
-    const d = new Date(since30.getTime() + i * 864e5);
-    return { date: d.toISOString().slice(0, 10), count: 0 };
-  });
+  const days = Array.from({ length: 30 }, (_, i) => ({
+    date: cairoDay(new Date(Date.now() - (29 - i) * 864e5)),
+    count: 0,
+  }));
   for (const row of (recent.data ?? []) as { created_at: string }[]) {
-    const key = row.created_at.slice(0, 10);
+    const key = cairoDay(new Date(row.created_at));
     const day = days.find((d) => d.date === key);
     if (day) day.count++;
   }
@@ -87,8 +90,8 @@ export default async function OverviewPage() {
                   <Link href={`/admin/leads?id=${l.id}`} className="flex items-center justify-between gap-3 py-3 hover:text-glow">
                     <div className="min-w-0">
                       <p className="truncate font-semibold">{l.name}</p>
-                      <p className="text-xs text-muted" dir="ltr">
-                        {l.phone}
+                      <p className="text-xs text-muted">
+                        <span dir="ltr">{l.phone}</span>
                       </p>
                     </div>
                     <StatusBadge status={l.status} label={tl(`statuses.${l.status}` as "statuses.new")} />

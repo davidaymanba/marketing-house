@@ -18,12 +18,13 @@ import {
   Gem,
 } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { signOut } from "@/app/admin/actions";
 import { LogoMark } from "@/components/brand/LogoMark";
+import { AdminLocaleSwitch } from "./AdminLocaleSwitch";
 import { cn } from "@/lib/utils";
 
 const groups = [
@@ -48,6 +49,8 @@ const groups = [
 export function Sidebar({ newLeads, email }: { newLeads: number; email: string }) {
   const t = useTranslations("admin.nav");
   const tb = useTranslations("admin");
+  const locale = useLocale();
+  const drawerOffscreen = locale === "ar" ? "100%" : "-100%";
   const pathname = usePathname();
   const [collapsed, setCollapsed] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -112,7 +115,8 @@ export function Sidebar({ newLeads, email }: { newLeads: number; email: string }
         ))}
       </nav>
       <div className="space-y-1 border-t border-line p-3">
-        <a href="/ar" target="_blank" rel="noopener noreferrer" className={cn("flex h-10 items-center gap-3 rounded-xl px-3 text-sm text-muted hover:bg-surface/60 hover:text-fg", compact && "justify-center px-0")}>
+        <AdminLocaleSwitch compact={compact} />
+        <a href={`/${locale}`} target="_blank" rel="noopener noreferrer" className={cn("flex h-10 items-center gap-3 rounded-xl px-3 text-sm text-muted hover:bg-surface/60 hover:text-fg", compact && "justify-center px-0")}>
           <ExternalLink aria-hidden className="size-4" />
           {!compact ? t("viewSite") : null}
         </a>
@@ -137,7 +141,7 @@ export function Sidebar({ newLeads, email }: { newLeads: number; email: string }
           aria-label={collapsed ? t("expand") : t("collapse")}
           className="absolute -end-3.5 top-24 grid size-7 place-items-center rounded-full border border-line bg-surface text-muted hover:text-fg"
         >
-          <ChevronsRight aria-hidden className={cn("size-4 transition-transform", !collapsed && "rotate-180")} />
+          <ChevronsRight aria-hidden className={cn("size-4 transition-transform", collapsed ? "rtl:rotate-180" : "ltr:rotate-180")} />
         </button>
       </aside>
 
@@ -155,9 +159,9 @@ export function Sidebar({ newLeads, email }: { newLeads: number; email: string }
             <motion.div className="fixed inset-0 z-50 bg-black/60 lg:hidden" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={() => setMobileOpen(false)} />
             <motion.aside
               className="fixed inset-y-0 start-0 z-50 w-72 border-e border-line bg-bg-elevated lg:hidden"
-              initial={{ x: "100%" }}
+              initial={{ x: drawerOffscreen }}
               animate={{ x: 0 }}
-              exit={{ x: "100%" }}
+              exit={{ x: drawerOffscreen }}
               transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
             >
               <button type="button" onClick={() => setMobileOpen(false)} aria-label={t("collapse")} className="absolute end-4 top-6 grid size-9 place-items-center rounded-lg border border-line">

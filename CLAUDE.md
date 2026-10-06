@@ -243,7 +243,7 @@ Both editable from admin. If a number is empty, show the badge text
 =====================================================================
 # 6. ADMIN DASHBOARD (/admin, protected)
 =====================================================================
-Design: same brand, calmer motion (fast fades, subtle hovers), RTL, collapsible sidebar.
+Design: same brand, calmer motion (fast fades, subtle hovers), English/LTR by default with an Arabic/RTL toggle (cookie), collapsible sidebar.
 - Login: Supabase Auth email/password, branded split-screen login with animated LogoMark.
 - Overview: KPI cards (new leads this week, total leads, projects, conversion rate),
   leads chart (last 30 days), leads per branch, latest leads table.
@@ -312,7 +312,7 @@ Public pages use ISR + revalidatePath after admin edits.
 # 9. PROJECT STRUCTURE
 =====================================================================
 app/[locale]/(site)/...        public pages
-app/admin/...                  dashboard (Arabic/RTL only, outside [locale]; excluded from
+app/admin/...                  dashboard (English/LTR default, Arabic/RTL via a cookie toggle; outside [locale]; excluded from
                                the next-intl middleware matcher)
 components/ui                  shadcn (restyled)
 components/motion              animation primitives

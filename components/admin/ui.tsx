@@ -2,6 +2,7 @@
 
 import { AnimatePresence, motion } from "motion/react";
 import { X } from "lucide-react";
+import { useLocale } from "next-intl";
 import { useEffect, useRef, type ReactNode } from "react";
 import { createPortal } from "react-dom";
 import { Button } from "@/components/ui/button";
@@ -26,7 +27,7 @@ function Portal({ children }: { children: ReactNode }) {
   return typeof document === "undefined" ? null : createPortal(children, document.body);
 }
 
-/** Side drawer (slides in from the inline-start side in RTL). */
+/** Side drawer anchored to the inline-end edge (right in LTR, left in RTL). */
 export function Sheet({
   open,
   onClose,
@@ -45,6 +46,7 @@ export function Sheet({
   wide?: boolean;
 }) {
   useOverlay(open, onClose);
+  const offscreen = useLocale() === "ar" ? "-100%" : "100%";
   const panelRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     if (open) panelRef.current?.focus();
@@ -54,7 +56,7 @@ export function Sheet({
     <Portal>
       <AnimatePresence>
         {open ? (
-          <div className="fixed inset-0 z-[60]" dir="rtl">
+          <div className="fixed inset-0 z-[60]">
             <motion.div className="absolute inset-0 bg-black/60 backdrop-blur-sm" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={onClose} />
             <motion.div
               ref={panelRef}
@@ -63,9 +65,9 @@ export function Sheet({
               aria-modal="true"
               aria-label={title}
               className={cn("absolute inset-y-0 end-0 flex w-full flex-col border-s border-line bg-bg-elevated outline-none", wide ? "max-w-3xl" : "max-w-xl")}
-              initial={{ x: "-100%" }}
+              initial={{ x: offscreen }}
               animate={{ x: 0 }}
-              exit={{ x: "-100%" }}
+              exit={{ x: offscreen }}
               transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
             >
               <header className="flex h-16 shrink-0 items-center justify-between border-b border-line px-6">
@@ -109,7 +111,7 @@ export function ConfirmDialog({
     <Portal>
       <AnimatePresence>
         {open ? (
-          <div className="fixed inset-0 z-[70] grid place-items-center p-4" dir="rtl">
+          <div className="fixed inset-0 z-[70] grid place-items-center p-4">
             <motion.div className="absolute inset-0 bg-black/60 backdrop-blur-sm" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={onCancel} />
             <motion.div
               role="alertdialog"

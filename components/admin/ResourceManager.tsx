@@ -2,7 +2,7 @@
 
 import { Reorder, useDragControls } from "motion/react";
 import { GripVertical, Pencil, Plus, Search, Trash2, X } from "lucide-react";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useRef, useState, useTransition } from "react";
 import { toast } from "sonner";
@@ -34,8 +34,15 @@ export function ResourceManager({ resourceKey, rows, options }: { resourceKey: R
 
   useEffect(() => setItems(rows), [rows]);
 
-  const title = (r: Row) => String(r[resource.titleField] ?? "");
-  const subtitle = (r: Row) => (resource.subtitleField ? String(r[resource.subtitleField] ?? "") : "");
+  const locale = useLocale();
+  // In English, show the *_en column as the title (falling back to Arabic) and the other language below it.
+  const localized = (r: Row, field: string) => {
+    if (!field.endsWith("_ar")) return String(r[field] ?? "");
+    const en = String(r[field.replace(/_ar$/, "_en")] ?? "");
+    return locale === "en" ? en || String(r[field] ?? "") : String(r[field] ?? "") || en;
+  };
+  const title = (r: Row) => localized(r, resource.titleField);
+  const subtitle = (r: Row) => (resource.subtitleField ? localized(r, resource.subtitleField) : "");
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
     return q ? items.filter((r) => `${title(r)} ${subtitle(r)}`.toLowerCase().includes(q)) : items;
@@ -254,6 +261,7 @@ function Editor({
 }) {
   const t = useTranslations("admin.crud");
   const tf = useTranslations("admin.fields");
+  const locale = useLocale();
   const resource = resources[resourceKey];
   const [values, setValues] = useState<Record<string, unknown>>(() => initialValues(resourceKey, row));
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -282,7 +290,7 @@ function Editor({
         return (
           <fieldset key={f.name} className="grid gap-3 sm:grid-cols-2">
             <legend className="mb-2 text-sm text-muted">{label}</legend>
-            {(["ar", "en"] as const).map((lang) => {
+            {(locale === "en" ? (["en", "ar"] as const) : (["ar", "en"] as const)).map((lang) => {
               const name = `${f.name}_${lang}`;
               const props = {
                 id: name,

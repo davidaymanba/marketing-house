@@ -1,10 +1,12 @@
-import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { SettingsForm } from "@/components/admin/SettingsForm";
 import { PageHeader } from "@/components/admin/ui";
 import { requireAdmin } from "@/lib/admin/auth";
 
-export const metadata: Metadata = { title: "الإعدادات" };
+export async function generateMetadata() {
+  const t = await getTranslations("admin.settings");
+  return { title: t("title") };
+}
 
 export default async function SettingsPage() {
   const { supabase } = await requireAdmin();

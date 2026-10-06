@@ -1,10 +1,13 @@
-import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
+import { AdminLocaleSwitch } from "@/components/admin/AdminLocaleSwitch";
 import { LoginForm } from "@/components/admin/LoginForm";
 import { LogoMark } from "@/components/brand/LogoMark";
 import { isSupabaseConfigured } from "@/lib/supabase/env";
 
-export const metadata: Metadata = { title: "تسجيل الدخول" };
+export async function generateMetadata() {
+  const t = await getTranslations("admin.login");
+  return { title: t("pageTitle") };
+}
 
 export default async function LoginPage({ searchParams }: { searchParams: Promise<{ error?: string }> }) {
   const { error } = await searchParams;
@@ -24,7 +27,8 @@ export default async function LoginPage({ searchParams }: { searchParams: Promis
       </section>
 
       {/* Form side */}
-      <section className="flex items-center justify-center p-6">
+      <section className="relative flex items-center justify-center p-6">
+        <AdminLocaleSwitch className="absolute end-6 top-6" />
         <div className="w-full max-w-sm">
           <LogoMark className="mb-10 w-16 lg:hidden" />
           <h1 className="text-3xl font-bold">{t("title")}</h1>
