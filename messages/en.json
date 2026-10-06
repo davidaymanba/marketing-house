@@ -1,0 +1,301 @@
+{
+  "meta": {
+    "title": "Marketing House | Full-Service Marketing Agency in Egypt",
+    "titleTemplate": "%s | Marketing House",
+    "description": "Marketing House is an officially registered, full-service marketing agency with branches in Giza, Cairo and Assiut. Strategy, creativity, media and performance — we build brands."
+  },
+  "common": {
+    "brand": "Marketing House",
+    "tagline": "We Build Brands",
+    "pillars": [
+      "Strategy",
+      "Creativity",
+      "Media",
+      "Performance"
+    ],
+    "startProject": "Start a project",
+    "viewWork": "See our work",
+    "skipToContent": "Skip to content",
+    "learnMore": "Learn more",
+    "comingSoon": "This page is being crafted",
+    "backHome": "Back home"
+  },
+  "nav": {
+    "home": "Home",
+    "services": "Services",
+    "portfolio": "Work",
+    "about": "About",
+    "contact": "Contact",
+    "menu": "Menu",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "switchLanguage": "عربي",
+    "switchLanguageLabel": "Switch to Arabic",
+    "mainNav": "Main navigation"
+  },
+  "cursor": {
+    "view": "View",
+    "drag": "Drag",
+    "call": "Call",
+    "open": "Open"
+  },
+  "preloader": {
+    "skip": "Click to skip",
+    "loading": "Loading"
+  },
+  "whatsapp": {
+    "label": "Chat on WhatsApp"
+  },
+  "branches": {
+    "title": "Our branches",
+    "giza": "Giza",
+    "cairo": "Cairo",
+    "assiut": "Assiut",
+    "directions": "Directions"
+  },
+  "footer": {
+    "eyebrow": "Let's talk",
+    "headline": "Got an idea? Let's turn it into a brand.",
+    "explore": "Explore",
+    "contact": "Contact",
+    "follow": "Follow",
+    "branches": "Branches",
+    "backToTop": "Back to top",
+    "rights": "All rights reserved",
+    "commercialReg": "Commercially registered",
+    "commercialRegNo": "Commercial Reg. No. {number}",
+    "taxCard": "Tax card holder",
+    "taxCardNo": "Tax Card No. {number}"
+  },
+  "home": {
+    "eyebrow": "Marketing Agency — Egypt",
+    "headlineLine1": "We build",
+    "headlineAccent": "brands",
+    "headlineLine2": "",
+    "scroll": "Scroll",
+    "heroAria": "3D scene of the Marketing House mark",
+    "clientsTitle": "Brands that trust us",
+    "intro": "We're not just an ad agency. We're the partner who understands the market, builds the strategy, creates work people remember, and measures every pound — so your brand actually grows.",
+    "introEyebrow": "Who we are",
+    "servicesEyebrow": "Services",
+    "servicesTitle": "Everything your brand needs, under one roof",
+    "viewService": "View service",
+    "allServices": "All services",
+    "processEyebrow": "Our approach",
+    "processTitle": "Four pillars behind every win",
+    "process": [
+      {
+        "title": "Strategy",
+        "text": "We start with research — market, competitors, audience — and set a clear plan with measurable goals."
+      },
+      {
+        "title": "Creativity",
+        "text": "We turn strategy into ideas, identity and content that stand out and stick."
+      },
+      {
+        "title": "Media",
+        "text": "We put your message in front of the right people, in the right place, on the right budget."
+      },
+      {
+        "title": "Performance",
+        "text": "We measure everything and keep optimising, so every campaign beats the last."
+      }
+    ],
+    "statsEyebrow": "By the numbers",
+    "stats": {
+      "projects": "Projects delivered",
+      "clients": "Happy clients",
+      "years": "Years of experience",
+      "campaigns": "Campaigns launched",
+      "branches": "Branches in Egypt"
+    },
+    "trustEyebrow": "Trust & safety",
+    "trustTitle": "Officially registered",
+    "trustText": "We operate fully legally and transparently — with formal contracts and invoices.",
+    "workEyebrow": "Selected work",
+    "workTitle": "Work we're proud of",
+    "allWork": "All work",
+    "placeholderBadge": "Sample",
+    "testimonialsEyebrow": "Testimonials",
+    "testimonialsTitle": "Their words matter more than ours",
+    "dragHint": "Drag",
+    "branchesEyebrow": "Our branches",
+    "branchesTitle": "Close to you in 3 governorates",
+    "ctaTitle": "Let's build your brand",
+    "ctaText": "Tell us about your project and we'll come back with a clear plan within 24 hours.",
+    "ctaMarquee": "Strategy • Creativity • Media • Performance •",
+    "phaseNote": ""
+  },
+  "pages": {
+    "services": "Services",
+    "portfolio": "Work",
+    "about": "About",
+    "contact": "Contact"
+  },
+  "services": {
+    "metaTitle": "Services",
+    "metaDescription": "Full-service marketing: branding, social media, content, production, paid ads, performance marketing, web and SEO.",
+    "eyebrow": "Services",
+    "title": "Everything your brand needs to grow",
+    "intro": "Eight integrated services working together — one strategy, one team, measurable results.",
+    "count": "services"
+  },
+  "serviceDetail": {
+    "deliverEyebrow": "Deliverables",
+    "deliverTitle": "What we deliver",
+    "processEyebrow": "Process",
+    "processTitle": "How we work",
+    "relatedEyebrow": "Related work",
+    "relatedTitle": "Projects with this service",
+    "faqEyebrow": "FAQ",
+    "faqTitle": "Got questions?",
+    "ctaTitle": "Ready to start?",
+    "ctaText": "Tell us your goal and we'll propose the right plan.",
+    "back": "All services"
+  },
+  "portfolio": {
+    "metaTitle": "Work",
+    "metaDescription": "Selected Marketing House work across branding, social media, production, ads and web.",
+    "eyebrow": "Our work",
+    "title": "Work that speaks for itself",
+    "intro": "Real projects, real results. (Current projects are illustrative samples until real case studies are added.)",
+    "all": "All",
+    "empty": "No projects in this category yet.",
+    "filterLabel": "Filter by category"
+  },
+  "project": {
+    "client": "Client",
+    "year": "Year",
+    "services": "Services",
+    "category": "Category",
+    "challenge": "Challenge",
+    "solution": "Solution",
+    "results": "Results",
+    "gallery": "Gallery",
+    "next": "Next project",
+    "back": "All work",
+    "close": "Close",
+    "prev": "Previous",
+    "nextImage": "Next",
+    "imageOf": "Image {current} of {total}"
+  },
+  "about": {
+    "metaTitle": "About",
+    "metaDescription": "Meet Marketing House — an officially registered full-service agency with three branches across Egypt.",
+    "eyebrow": "About us",
+    "title": "The house where brands grow",
+    "story": "We started with a simple belief: every business in Egypt deserves world-class marketing. Today Marketing House is a full-service agency with branches in Giza, Cairo and Assiut, and a team that blends strategy, creativity and numbers — to build brands that last and grow.",
+    "missionTitle": "Our mission",
+    "mission": "Help businesses reach their audience intelligently and turn attention into real sales and sustainable growth.",
+    "visionTitle": "Our vision",
+    "vision": "To be the agency Egyptian brands choose when they're serious about growth.",
+    "valuesEyebrow": "Values",
+    "valuesTitle": "What we believe in",
+    "values": [
+      {
+        "title": "Transparency",
+        "text": "Clear numbers and honest reports — no spin."
+      },
+      {
+        "title": "Creativity with purpose",
+        "text": "Every idea must serve a business goal."
+      },
+      {
+        "title": "Partnership",
+        "text": "We work like part of your team."
+      },
+      {
+        "title": "Always improving",
+        "text": "We learn, test and improve every day."
+      }
+    ],
+    "timelineEyebrow": "Our journey",
+    "timelineTitle": "Milestones",
+    "timeline": [
+      {
+        "year": "Start",
+        "title": "Marketing House launches",
+        "text": "A small team with big ambition."
+      },
+      {
+        "year": "Growth",
+        "title": "A full-service team",
+        "text": "Production, ads and web join under one roof."
+      },
+      {
+        "year": "Registered",
+        "title": "Officially registered",
+        "text": "Commercial registration, tax card and formal contracts."
+      },
+      {
+        "year": "Today",
+        "title": "3 branches in Egypt",
+        "text": "Giza, Cairo and Assiut — close to our clients."
+      }
+    ],
+    "teamEyebrow": "Team",
+    "teamTitle": "The people behind the work",
+    "branchesStat": "Branches across Egypt",
+    "legalEyebrow": "Legal information",
+    "legalTitle": "Officially registered",
+    "commercialReg": "Commercial registration",
+    "taxCard": "Tax card",
+    "pending": "Coming soon"
+  },
+  "contact": {
+    "metaTitle": "Contact",
+    "metaDescription": "Contact Marketing House — call, WhatsApp or send a message, or visit our Giza, Cairo and Assiut branches.",
+    "eyebrow": "Contact",
+    "title": "Let's start something big",
+    "intro": "Fill in the form or reach us directly — we reply within 24 hours.",
+    "phone": "Call us",
+    "whatsapp": "WhatsApp",
+    "email": "Email",
+    "copy": "Copy",
+    "copied": "Copied!",
+    "branchesTitle": "Visit us",
+    "hours": "Working hours",
+    "directions": "Get directions",
+    "mapTitle": "Map of the {branch}",
+    "form": {
+      "title": "Send us a message",
+      "step": "Step {current} of {total}",
+      "name": "Name",
+      "phone": "Mobile number",
+      "email": "Email (optional)",
+      "service": "Service needed",
+      "servicePlaceholder": "Choose a service",
+      "branch": "Nearest branch",
+      "branchPlaceholder": "Choose a branch",
+      "budget": "Approximate budget",
+      "budgetPlaceholder": "Choose a budget",
+      "budgets": {
+        "lt10k": "Under EGP 10k",
+        "10to30k": "EGP 10k – 30k",
+        "30to100k": "EGP 30k – 100k",
+        "gt100k": "Over EGP 100k"
+      },
+      "message": "Tell us about your project",
+      "next": "Next",
+      "back": "Back",
+      "submit": "Send",
+      "sending": "Sending...",
+      "successTitle": "Message received!",
+      "successText": "Thank you — our team will contact you within 24 hours.",
+      "again": "Send another message",
+      "errors": {
+        "name": "Enter your name (at least 2 characters)",
+        "phone": "Enter a valid Egyptian mobile number",
+        "email": "That email doesn't look right",
+        "message": "Add a bit more detail (at least 10 characters)",
+        "rateLimit": "Too many messages. Please try again shortly.",
+        "generic": "Something went wrong — try again or reach us on WhatsApp."
+      }
+    }
+  },
+  "notFound": {
+    "title": "This page doesn't exist",
+    "text": "The link may have changed or the page moved. Let's get you back to the start.",
+    "cta": "Back home"
+  }
+}
