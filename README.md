@@ -13,7 +13,7 @@ Requirements: **Node.js 20.9+** (developed on Node 24) and npm.
 ```bash
 npm install
 cp .env.example .env.local   # fill in the values (see below)
-npm run dev                  # http://localhost:3000 → redirects to /ar
+npm run dev                  # http://localhost:3000 → redirects to /en
 ```
 
 The public site works **without Supabase**: it falls back to the seed content in `lib/content/seed.ts`. The admin and the contact form need Supabase.

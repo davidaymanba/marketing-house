@@ -73,7 +73,7 @@ Text gradient:       same signature gradient with background-clip:text
   - Framer Motion for component-level & page transitions
   - Lenis for smooth scrolling (synced with ScrollTrigger)
   - React Three Fiber + drei for ONE hero 3D scene (lazy-loaded)
-- next-intl: /ar (default, dir="rtl") and /en (dir="ltr"); logical CSS properties everywhere
+- next-intl: /en (default, dir="ltr") and /ar (dir="rtl"); logical CSS properties everywhere
 - Supabase: Postgres, Auth, Storage
 - react-hook-form + zod, Resend (optional), lucide-react, sonner (toasts)
 
@@ -398,9 +398,9 @@ Do not skip animations or replace them with simple fades — motion is a core re
   Arabic titles, otherwise Arabic renders as boxes. Set dir/lang correctly in the template.
 
 ## i18n details
-- Root "/" redirects to "/ar". localePrefix: "always". Slugs are shared across locales
+- Root "/" redirects to "/en". localePrefix: "always". Slugs are shared across locales
   (English slugs). Language switcher keeps the current path.
-- hreflang alternates for ar, en and x-default (→ ar) on every page.
+- hreflang alternates for ar, en and x-default (→ en) on every page.
 
 ## Content & assets
 - No real project photos/logos/team photos exist yet. Use clearly marked placeholders

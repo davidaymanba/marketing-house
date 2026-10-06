@@ -2,13 +2,13 @@ import type { Metadata } from "next";
 import { routing } from "@/i18n/routing";
 import { siteConfig } from "./site";
 
-/** Absolute URL for a locale + path ("/" → "/ar"). */
+/** Absolute URL for a locale + path ("/" → "/en"). */
 export function localeUrl(locale: string, path = "/") {
   const clean = path === "/" ? "" : path;
   return `${siteConfig.url}/${locale}${clean}`;
 }
 
-/** hreflang alternates for every locale + x-default (→ Arabic). */
+/** hreflang alternates for every locale + x-default (→ English). */
 export function alternates(locale: string, path = "/") {
   return {
     canonical: localeUrl(locale, path),
